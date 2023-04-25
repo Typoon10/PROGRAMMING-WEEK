@@ -16,6 +16,6 @@ public final class Constants {
 
     public static final int kDriverControllerPort = 0;
     public static final int kOperatorControllerPort = 1;
-    public static final int thingyID = 5;
+    public static final int thingyID = 6;
     public static final double vroomiesSpeed = 0.2;
 }

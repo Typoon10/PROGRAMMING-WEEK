@@ -11,17 +11,18 @@ import frc.robot.subsystems.Test;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class GiantGourami extends InstantCommand {
+public class GreatBarrierReef extends InstantCommand {
   private Test thingy;
-  public GiantGourami(Test thingy) {
+  public GreatBarrierReef(Test thingy) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.thingy = thingy;
-    addRequirements(thingy);
+    addRequirements(this.thingy);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    thingy.setVroomies(0);
+    thingy.setVroomies(-Constants.vroomiesSpeed);
+
   }
 }
