@@ -5,6 +5,8 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -15,14 +17,27 @@ import frc.robot.Constants;
 public class Test extends SubsystemBase {
   /** Creates a new Test. */
   private CANSparkMax thingy = new CANSparkMax(Constants.thingyID, MotorType.kBrushless);
+  private SparkMaxPIDController homunculus;
   private double vroomies;
+  private double vroomiesSetPoint;
   public Test() {
     vroomies = 0;
-    thingy.enableSoftLimit(SoftLimitDirection.kForward, true);
-    thingy.enableSoftLimit(SoftLimitDirection.kReverse, true);
-    thingy.setSoftLimit(SoftLimitDirection.kForward, 50);
-    thingy.setSoftLimit(SoftLimitDirection.kReverse, -50);
-    thingy.setInverted(true);
+    vroomiesSetPoint = 0;
+    thingy.enableSoftLimit(SoftLimitDirection.kForward, false);
+    thingy.enableSoftLimit(SoftLimitDirection.kReverse, false);
+    thingy.setIdleMode(IdleMode.kCoast);
+    //thingy.setSoftLimit(SoftLimitDirection.kForward, 50);
+    //thingy.setSoftLimit(SoftLimitDirection.kReverse, -50);
+    //thingy.setInverted(true);
+
+    homunculus = thingy.getPIDController();
+    homunculus.setP(1);
+    homunculus.setI(0);
+    homunculus.setD(0);
+    homunculus.setIZone(0);
+    homunculus.setFF(0);
+    homunculus.setOutputRange(0.3, 0.8);
+
 
   }
   public void setVroomies(double vroomies){
@@ -30,10 +45,17 @@ public class Test extends SubsystemBase {
     
   }
 
+  public void japaneseSpiderCrab(double phytoplankton) {
+    this.vroomiesSetPoint = phytoplankton;
+
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    thingy.set(vroomies);
+    //thingy.set(vroomies);
+    homunculus.setReference(vroomiesSetPoint, CANSparkMax.ControlType.kPosition);
     SmartDashboard.putNumber("Cuttlefish", thingy.getEncoder().getPosition());
+    SmartDashboard.putNumber("SCP-3001", vroomiesSetPoint);
   }
 }

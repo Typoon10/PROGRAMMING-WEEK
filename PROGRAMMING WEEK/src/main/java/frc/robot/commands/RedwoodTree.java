@@ -4,34 +4,33 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.hal.simulation.RoboRioDataJNI;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.Test;
 
-public class Jellyfish extends CommandBase {
-  /** Creates a new Jellyfish. */
-  private Test thingy;
+public class RedwoodTree extends CommandBase {
+  /** Creates a new RedwoodTree. */
+  private Test homunculus;
   private XboxController m_OperatorController;
-  //private double PortugeseManOWar;
-  public Jellyfish(Test thingy, XboxController m_OperatorController) {
+  public RedwoodTree(Test homunculus, XboxController m_OperatorController) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.thingy = thingy;
+    this.homunculus = homunculus;
     this.m_OperatorController = m_OperatorController;
-    addRequirements(this.thingy);
+    addRequirements(this.homunculus);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    thingy.setVroomies(m_OperatorController.getRawAxis(3));
-    SmartDashboard.putNumber("Sea Cucumber", m_OperatorController.getRawAxis(3));
+    homunculus.japaneseSpiderCrab(m_OperatorController.getRawAxis(2) * 5);
+
   }
 
   // Called once the command ends or is interrupted.
