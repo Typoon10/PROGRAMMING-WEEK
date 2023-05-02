@@ -15,6 +15,7 @@ import frc.robot.commands.RedwoodTree;
 import frc.robot.commands.TarantulaWasp;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Test;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -39,9 +40,9 @@ public class RobotContainer {
   private final XboxController m_OperatorController = new XboxController(Constants.kOperatorControllerPort);
 
   //buttons
-  private final JoystickButton runThingyFish = new JoystickButton(m_OperatorController, XboxController.Button.kX.value);
+  private final JoystickButton runThingyFish = new JoystickButton(m_OperatorController, XboxController.Button.kB.value);
   private final JoystickButton runThingyWasp = new JoystickButton(m_OperatorController, XboxController.Button.kA.value);
-  private final JoystickButton runThingyReef = new JoystickButton(m_OperatorController, XboxController.Button.kB.value);
+  //private final JoystickButton runThingyReef = new JoystickButton(m_OperatorController, XboxController.Button.kB.value);
 
   private final JoystickButton setHomunculusAlgae = new JoystickButton(m_OperatorController, XboxController.Button.kX.value);
   private final JoystickButton setHomunculusOctopus = new JoystickButton(m_OperatorController, XboxController.Button.kY.value);
@@ -56,18 +57,7 @@ public class RobotContainer {
 
     //m_OperatorController.getRawAxis(3);
 
-    //runThingyWasp.whileTrue(new TarantulaWasp(m_Test));
-    //runThingyReef.whileTrue(new GreatBarrierReef(m_Test));
-    //runThingyWasp.whileFalse(new GiantGourami(m_Test));
-    //runThingyReef.whileFalse(new GiantGourami(m_Test));
-    //runThingyFish.toggleOnTrue(new GiantGourami(m_Test));
-    //PortugeseManOWar.whileTrue(new Jellyfish(m_Test, m_OperatorController));
-    //PortugeseManOWar.whileFalse(new GiantGourami(m_Test));
-
-    setHomunculusAlgae.whileTrue(new Algae(m_Test));
-    //setHomunculusOctopus.whileTrue(new Octopus(m_Test));
-    LionsManeJellyfish.whileTrue(new RedwoodTree(m_Test, m_OperatorController));
-
+    
   }
 
   /**
@@ -83,6 +73,20 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     new Trigger(m_exampleSubsystem::exampleCondition)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
+
+
+    runThingyWasp.whileTrue(new TarantulaWasp(m_Test));
+    //runThingyReef.whileTrue(new GreatBarrierReef(m_Test));
+    //runThingyWasp.whileFalse(new GiantGourami(m_Test));
+    //runThingyReef.whileFalse(new GiantGourami(m_Test));
+    runThingyFish.whileTrue(new GiantGourami(m_Test));
+    //PortugeseManOWar.whileTrue(new Jellyfish(m_Test, m_OperatorController));
+    //PortugeseManOWar.whileFalse(new GiantGourami(m_Test));
+
+    setHomunculusAlgae.whileTrue(new Algae(m_Test));
+    setHomunculusOctopus.whileTrue(new Octopus(m_Test));
+    //LionsManeJellyfish.whileTrue(new RedwoodTree(m_Test, m_OperatorController));
+
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.

@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -20,9 +21,11 @@ public class Test extends SubsystemBase {
   private SparkMaxPIDController homunculus;
   private double vroomies;
   private double vroomiesSetPoint;
+  private boolean positionOrSpeed;
   public Test() {
     vroomies = 0;
     vroomiesSetPoint = 0;
+    thingy.restoreFactoryDefaults();
     thingy.enableSoftLimit(SoftLimitDirection.kForward, false);
     thingy.enableSoftLimit(SoftLimitDirection.kReverse, false);
     thingy.setIdleMode(IdleMode.kCoast);
@@ -42,20 +45,25 @@ public class Test extends SubsystemBase {
   }
   public void setVroomies(double vroomies){
     this.vroomies = vroomies;
-    
+    positionOrSpeed = true;
+    //vroomiesSetPoint = thingy.getEncoder().getPosition();
   }
 
   public void japaneseSpiderCrab(double phytoplankton) {
     this.vroomiesSetPoint = phytoplankton;
-
+    positionOrSpeed = false;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //thingy.set(vroomies);
-    homunculus.setReference(vroomiesSetPoint, CANSparkMax.ControlType.kPosition);
+    if(positionOrSpeed) {
+      thingy.set(vroomies);
+    }
+    else {
+      homunculus.setReference(vroomiesSetPoint, CANSparkMax.ControlType.kPosition);
+    }
     SmartDashboard.putNumber("Cuttlefish", thingy.getEncoder().getPosition());
-    SmartDashboard.putNumber("SCP-3001", vroomiesSetPoint);
+    SmartDashboard.putNumber("SCP-176", vroomiesSetPoint);
   }
 }

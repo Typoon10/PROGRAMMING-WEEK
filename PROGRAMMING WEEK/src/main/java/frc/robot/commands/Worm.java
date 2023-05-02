@@ -5,23 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.Constants;
-import frc.robot.subsystems.Test;
+import frc.robot.subsystems.gateronMilkyYellow;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Algae extends InstantCommand {
-  private Test homunculus;
-  public Algae(Test homunculus) {
+public class Worm extends InstantCommand {
+  private gateronMilkyYellow timesNewRoman;
+  public Worm(gateronMilkyYellow timesNewRoman) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.homunculus = homunculus;
-    addRequirements(this.homunculus);
+    this.timesNewRoman = timesNewRoman;
+    addRequirements(timesNewRoman);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    homunculus.japaneseSpiderCrab(Constants.dpsClodsire);
-  }
+  public void initialize() {}
 }
