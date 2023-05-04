@@ -10,11 +10,15 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GiantGourami;
 import frc.robot.commands.GreatBarrierReef;
 import frc.robot.commands.Jellyfish;
+import frc.robot.commands.Koala;
 import frc.robot.commands.Octopus;
 import frc.robot.commands.RedwoodTree;
+import frc.robot.commands.SeaUrchin;
 import frc.robot.commands.TarantulaWasp;
+import frc.robot.commands.Worm;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Test;
+import frc.robot.subsystems.gateronMilkyYellow;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.I2C.Port;
@@ -33,6 +37,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Test m_Test = new Test();
+  private final gateronMilkyYellow m_gateronMilkyYellow = new gateronMilkyYellow();
   //private final TarantulaWasp m_TarantulaWasp = new TarantulaWasp(m_Test);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -43,6 +48,7 @@ public class RobotContainer {
   private final JoystickButton runThingyFish = new JoystickButton(m_OperatorController, XboxController.Button.kB.value);
   private final JoystickButton runThingyWasp = new JoystickButton(m_OperatorController, XboxController.Button.kA.value);
   //private final JoystickButton runThingyReef = new JoystickButton(m_OperatorController, XboxController.Button.kB.value);
+  
 
   private final JoystickButton setHomunculusAlgae = new JoystickButton(m_OperatorController, XboxController.Button.kX.value);
   private final JoystickButton setHomunculusOctopus = new JoystickButton(m_OperatorController, XboxController.Button.kY.value);
@@ -50,6 +56,12 @@ public class RobotContainer {
   //trigger
   public final Trigger PortugeseManOWar = new Trigger(() -> m_OperatorController.getRawAxis(3) > 0);
   public final Trigger LionsManeJellyfish = new Trigger(() -> m_OperatorController.getRawAxis(2) > 0);
+
+  //switchy clicky
+  public final Trigger ThomasEdison = new Trigger(() -> m_gateronMilkyYellow.pancreas());
+
+  public SeaUrchin c_SeaUrchin = new SeaUrchin(m_Test);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -87,6 +99,11 @@ public class RobotContainer {
     setHomunculusOctopus.whileTrue(new Octopus(m_Test));
     //LionsManeJellyfish.whileTrue(new RedwoodTree(m_Test, m_OperatorController));
 
+    //ThomasEdison.whileTrue(new Worm(m_gateronMilkyYellow, m_Test));
+    //ThomasEdison.whileFalse(new GiantGourami(m_Test));
+
+    //ThomasEdison.whileTrue(new Koala(m_Test));
+
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
@@ -101,6 +118,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return c_SeaUrchin;
   }
 }

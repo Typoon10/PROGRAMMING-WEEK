@@ -31,7 +31,7 @@ public class Test extends SubsystemBase {
     thingy.setIdleMode(IdleMode.kCoast);
     //thingy.setSoftLimit(SoftLimitDirection.kForward, 50);
     //thingy.setSoftLimit(SoftLimitDirection.kReverse, -50);
-    //thingy.setInverted(true);
+    thingy.setInverted(false);
 
     homunculus = thingy.getPIDController();
     homunculus.setP(1);
