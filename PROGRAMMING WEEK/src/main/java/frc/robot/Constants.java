@@ -20,4 +20,5 @@ public final class Constants {
     public static final double vroomiesSpeed = 0.2;
     public static final double shrug = 20;
     public static final double dpsClodsire = 10;
+    public static final int length = 5;
 }

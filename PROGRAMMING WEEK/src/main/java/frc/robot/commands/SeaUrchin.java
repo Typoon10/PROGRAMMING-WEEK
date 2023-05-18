@@ -17,6 +17,6 @@ public class SeaUrchin extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     this.thingy = thingy;
-    addCommands(new Koala(thingy));
+    addCommands(new Koala(thingy), new Sloth(thingy));
   }
 }
