@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.blingblong;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private blingblong m_Blingblong;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -32,11 +34,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     CameraServer.startAutomaticCapture();
-    /*blingbling blingblong = new blingbling(0);
+    m_Blingblong = new blingblong();
+   
     
-    blingblinglong blonglong = new blingblinglong(5);
-    blingblong.setlong(blonglong.getlong());
-    */
 
     
     }
